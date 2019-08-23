@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Code Game">
 <meta property="og:description" content="问题一直接在source/_posts删除了博客，部署上传到github之后，发现还是并没有成功删除。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-23T04:55:13.844Z">
+<meta property="og:updated_time" content="2019-08-23T05:12:12.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo遇到的坑">
 <meta name="twitter:description" content="问题一直接在source/_posts删除了博客，部署上传到github之后，发现还是并没有成功删除。">
@@ -312,7 +312,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-08-23T12:55:13+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-08-23T13:12:12+08:00">
                 2019-08-23
               </time>
             
@@ -437,7 +437,15 @@
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>改用Valine来做评论系统</p>
 <p><a href="https://valine.js.org/" target="_blank" rel="noopener">valine官网</a></p>
 <p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">为你的Hexo加上评论系统-Valine</a></p>
-<h2 id="问题四-未解决"><a href="#问题四-未解决" class="headerlink" title="问题四(未解决)"></a>问题四(未解决)</h2><p>valine的评论在Tags,categories,Archives,About下都有</p>
+<h2 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h2><p>valine的评论在Tags,categories,Archives,About下都有</p>
+<h3 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h3><p>从博客<a href="https://luanzhuxian.github.io/post/c49d1b87.html" target="_blank" rel="noopener">Hexo + Next 添加 Valine 评论功能
+</a>里找到了解决方案:</p>
+<p>可在文章模板scaffolds/post.md 或文章头部中设置comments</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">comments: true</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>在<code>source/categories/index.md</code>和<code>source/tags/index.md</code>里要禁用<code>comments</code>，否则分类和标签页面会显示评论框：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2018-12-06 22:54:28</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -647,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题一"><span class="nav-number">1.</span> <span class="nav-text">问题一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法："><span class="nav-number">1.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题二"><span class="nav-number">2.</span> <span class="nav-text">问题二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法：-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题三"><span class="nav-number">3.</span> <span class="nav-text">问题三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">3.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题四-未解决"><span class="nav-number">4.</span> <span class="nav-text">问题四(未解决)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题一"><span class="nav-number">1.</span> <span class="nav-text">问题一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法："><span class="nav-number">1.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题二"><span class="nav-number">2.</span> <span class="nav-text">问题二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法：-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题三"><span class="nav-number">3.</span> <span class="nav-text">问题三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">3.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题四"><span class="nav-number">4.</span> <span class="nav-text">问题四</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法-1"><span class="nav-number">4.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -863,12 +871,12 @@
     });
     new Valine({
         el: '#comments' ,
-        verify: false,
+        verify: true,
         notify: true,
         appId: 'cv50UsYhXRMxoKByR0zk1yzT-gzGzoHsz',
         appKey: 'PCeqVk2rUOH33uUDXg9iOY3e',
         placeholder: 'comment here...',
-        avatar:'mm',
+        avatar:'',
         guest_info:guest,
         pageSize:'10' || 10,
     });
