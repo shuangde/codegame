@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[hexo遇到的坑]]></title>
+    <url>%2F2019%2F08%2F22%2Fhexo%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[问题一直接在source/_posts删除了博客，部署上传到github之后，发现还是并没有成功删除。 解决方法： 需要先运行命令 1hexo clean 然后生成、部署 12hexo ghexo d 或者 1hexo d -g 问题二收到github邮件提示Page build failure 在github的Settings界面的GitHub Pages，也能看到: Your site is having problems building: The tag fancybox on line 77 in themes/landscape/README.md is not a recognized Liquid tag. For more information, see https://help.github.com/en/articles/page-build-failed-unknown-tag-error. 解决方法： 参照hexo的github提的一个issue: 删除掉blog目录下的.deploy_git文件，然后重新部署 问题三评论系统 一开始使用gitment初始化评论显示[object ProgressEvent] 参考了：github issue#170，一篇博客 尝试了其中的两个方法未成功： 由于引入的 gitment.js 中有这样的一段代码： 1234567891011_utils.http.post(&apos;https://gh-oauth.imsun.net&apos;, &#123; code: code, client_id: client_id, client_secret: client_secret &#125;, &apos;&apos;).then(function (data) &#123; _this.accessToken = data.access_token; _this.update(); &#125;).catch(function (e) &#123; _this.state.user.isLoggingIn = false; alert(e); &#125;); 请求了一个服务接口，由于这个服务接口是作者自己搭建的，已经停止了。这里可以直接改为请求 github 认证的接口_utils.http.post(&#39;https://github.com/login/oauth/access_token&#39;, {...}就可以了,不用经过作者的服务 打开你的blog本地仓库的gitment.swig修改后的代码如下 1234567891011&lt;!-- LOCAL: You can save these files to your site and update links --&gt; &#123;% if theme.gitment.mint %&#125; &#123;% set CommentsClass = &quot;Gitmint&quot; %&#125; &lt;link rel=&quot;stylesheet&quot; href=&quot;https://aimingoo.github.io/gitmint/style/default.css&quot;&gt; &lt;script src=&quot;https://aimingoo.github.io/gitmint/dist/gitmint.browser.js&quot;&gt;&lt;/script&gt; &#123;% else %&#125; &#123;% set CommentsClass = &quot;Gitment&quot; %&#125; &lt;link rel=&quot;stylesheet&quot; href=&quot;https://billts.site/extra_css/gitment.css&quot;&gt; &lt;script src=&quot;https://billts.site/js/gitment.js&quot;&gt;&lt;/script&gt; &#123;% endif %&#125;&lt;!-- END LOCAL --&gt; ~ ### 解决方法 ~ ~ 改用Valine来做评论系统 ~ valine官网 为你的Hexo加上评论系统-Valine 解决方法改用Disqus做评论（需要翻墙） Disqus官网 参考博客 Hexo添加Disqus评论 问题四Tags,categories,Archives,About页面下都有评论功能 解决方法从博客Hexo + Next 添加 Valine 评论功能 里找到了解决方案: 可在文章模板scaffolds/post.md 或文章头部中设置comments 1234567---title: &#123;&#123; title &#125;&#125;date: &#123;&#123; date &#125;&#125;comments: truecategories:tags:--- 在source/categories/index.md和source/tags/index.md里要禁用comments，否则分类和标签页面会显示评论框： 123456---title: categoriesdate: 2018-12-06 22:54:28type: &quot;categories&quot;comments: false--- 问题五：添加站内搜索LocalSearch安装hexo-generator-searchdb plugin 进入到你的站点根目录，在此处开始安装 $ npm install hexo-generator-searchdb --save 修改站点主题next的配置文件next/_config.yml 12345search: path: search.xml field: post format: html limit: 10000 修改站点主题next的配置文件next/_config.yml 1234567local_search: enable: true # if auto, trigger search by changing input # if manual, trigger search by pressing enter key or search button trigger: auto # show top n results per article, show all results by setting to -1 top_n_per_article: 1]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo+github博客上传图片]]></title>
+    <url>%2F2019%2F08%2F22%2Fhexo-upload-image%2F</url>
+    <content type="text"><![CDATA[先把blog(hexo)目录下的_config.yml里的post_asset_folder:true 设置为true blog目录下执行命令npm install https://github.com/CodeFalling/hexo-asset-image --save blog目录下打开Git Bash，运行hexo new &#39;test-image&#39;生成一篇新博文，会在source/_posts目录下发现一个和博客名相同的文件夹 把图片放在这个文件夹下，就可以在markdown中引入这个图片![test](test-image/img.jpg) 效果如下]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F08%2F21%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>搭建博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+</search>
