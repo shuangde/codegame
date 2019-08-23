@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Code Game">
 <meta property="og:description" content="问题一直接在source/_posts删除了博客，部署上传到github之后，发现还是并没有成功删除。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-22T11:02:31.159Z">
+<meta property="og:updated_time" content="2019-08-23T04:00:06.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo遇到的坑">
 <meta name="twitter:description" content="问题一直接在source/_posts删除了博客，部署上传到github之后，发现还是并没有成功删除。">
@@ -342,6 +342,17 @@
 
           
           
+             <span id="/2019/08/22/hexo问题/" class="leancloud_visitors" data-flag-title="hexo遇到的坑">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
             <span class="post-meta-divider">|</span>
@@ -389,22 +400,28 @@
 <p>Your site is having problems building: The tag fancybox on line 77 in themes/landscape/README.md is not a recognized Liquid tag. For more information, see <a href="https://help.github.com/en/articles/page-build-failed-unknown-tag-error" target="_blank" rel="noopener">https://help.github.com/en/articles/page-build-failed-unknown-tag-error</a>.</p>
 </blockquote>
 <h3 id="解决方法：-1"><a href="#解决方法：-1" class="headerlink" title="解决方法："></a>解决方法：</h3><p>   参照hexo的github提的一个<a href="https://github.com/hexojs/hexo/issues/2590" target="_blank" rel="noopener">issue</a>: 删除掉blog目录下的.deploy_git文件，然后重新部署</p>
-<h2 id="问题三-未解决"><a href="#问题三-未解决" class="headerlink" title="问题三(未解决)"></a>问题三(未解决)</h2><p>gitment初始化评论显示[object ProgressEvent] </p>
-<p>参考资料：</p>
-<p><a href="https://github.com/imsun/gitment/issues/170" target="_blank" rel="noopener">github issue</a></p>
-<p><a href="https://aoenian.github.io/2019/04/14/next-theme-gitment/" target="_blank" rel="noopener">blog</a></p>
-<p>尝试了以下两个方法未成功：</p>
+<h2 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h2><p>评论系统</p>
+<p>一开始使用gitment初始化评论显示[object ProgressEvent] </p>
+<p>参考了：<a href="https://github.com/imsun/gitment/issues/170" target="_blank" rel="noopener">github issue#170</a>，<a href="https://aoenian.github.io/2019/04/14/next-theme-gitment/" target="_blank" rel="noopener">一篇博客</a></p>
+<p>尝试了其中的两个方法未成功：</p>
+<hr>
 <blockquote>
 <p>由于引入的 gitment.js 中有这样的一段代码：</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_utils.http.post(&apos;https://gh-oauth.imsun.net&apos;, &#123;</span><br><span class="line">   code: code,</span><br><span class="line">   client_id: client_id,</span><br><span class="line">   client_secret: client_secret</span><br><span class="line"> &#125;, &apos;&apos;).then(function (data) &#123;</span><br><span class="line">   _this.accessToken = data.access_token;</span><br><span class="line">   _this.update();</span><br><span class="line"> &#125;).catch(function (e) &#123;</span><br><span class="line">   _this.state.user.isLoggingIn = false;</span><br><span class="line">   alert(e);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
 
 <p>请求了一个服务接口，由于这个服务接口是作者自己搭建的，已经停止了。<br>这里可以直接改为请求 github 认证的接口<br><code>_utils.http.post(&#39;https://github.com/login/oauth/access_token&#39;, {...}</code><br>就可以了,不用经过作者的服务</p>
+<hr>
 <blockquote>
 <p>打开你的blog本地仓库的gitment.swig修改后的代码如下</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- LOCAL: You can save these files to your site and update links --&gt;</span><br><span class="line">    &#123;% if theme.gitment.mint %&#125;</span><br><span class="line">        &#123;% set CommentsClass = &quot;Gitmint&quot; %&#125;</span><br><span class="line">        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://aimingoo.github.io/gitmint/style/default.css&quot;&gt;</span><br><span class="line">        &lt;script src=&quot;https://aimingoo.github.io/gitmint/dist/gitmint.browser.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &#123;% else %&#125;</span><br><span class="line">        &#123;% set CommentsClass = &quot;Gitment&quot; %&#125;</span><br><span class="line">        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://billts.site/extra_css/gitment.css&quot;&gt;</span><br><span class="line">        &lt;script src=&quot;https://billts.site/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;!-- END LOCAL --&gt;</span><br></pre></td></tr></table></figure>
 
+<hr>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>改用Valine来做评论系统</p>
+<p><a href="https://valine.js.org/" target="_blank" rel="noopener">valine官网</a></p>
+<p><a href="https://blog.csdn.net/blue_zy/article/details/79071414" target="_blank" rel="noopener">为你的Hexo加上评论系统-Valine</a></p>
+<h2 id="问题四-未解决"><a href="#问题四-未解决" class="headerlink" title="问题四(未解决)"></a>问题四(未解决)</h2><p>valine的评论在Tags,categories,Archives,About下都有</p>
 
       
     </div>
@@ -596,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题一"><span class="nav-number">1.</span> <span class="nav-text">问题一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法："><span class="nav-number">1.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题二"><span class="nav-number">2.</span> <span class="nav-text">问题二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法：-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题三-未解决"><span class="nav-number">3.</span> <span class="nav-text">问题三(未解决)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题一"><span class="nav-number">1.</span> <span class="nav-text">问题一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法："><span class="nav-number">1.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题二"><span class="nav-number">2.</span> <span class="nav-text">问题二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法：-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题三"><span class="nav-number">3.</span> <span class="nav-text">问题三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">3.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题四-未解决"><span class="nav-number">4.</span> <span class="nav-text">问题四(未解决)</span></a></li></ol></div>
             
 
           </div>
@@ -836,6 +853,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("cv50UsYhXRMxoKByR0zk1yzT-gzGzoHsz", "PCeqVk2rUOH33uUDXg9iOY3e");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
