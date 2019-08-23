@@ -17,6 +17,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -81,7 +85,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:url" content="https://shuangde.github.io/categories/index.html">
 <meta property="og:site_name" content="Code Game">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-08-21T07:55:51.079Z">
@@ -116,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="https://shuangde.github.io/categories/">
 
 
 
@@ -261,7 +265,7 @@
       
       
       
-      <div class="post-body">
+      <div class="post-body han-init-context">
         
         
           <div class="category-all-page">
@@ -321,9 +325,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Sander Zeng">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Shuangde Zeng">
             
-              <p class="site-author-name" itemprop="name">Sander Zeng</p>
+              <p class="site-author-name" itemprop="name">Shuangde Zeng</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -413,7 +417,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Sander Zeng</span>
+  <span class="author" itemprop="copyrightHolder">Shuangde Zeng</span>
 
   
 </div>
@@ -423,11 +427,7 @@
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -745,6 +745,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
